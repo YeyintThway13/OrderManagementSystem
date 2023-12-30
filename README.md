@@ -26,3 +26,6 @@
 ## ERD
 
 ![erd.png](https://drive.google.com/uc?export=download&id=1AiUY9YeBCL0I5AEfch-CNBqoqKPX186Q)
+
+## Gitflow
+![Gitflow.png](https://drive.google.com/uc?export=download&id=12lSiOJs3Tj2wDlOa_73iaSXqKkT2c853)

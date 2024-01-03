@@ -140,3 +140,4 @@ exports.deleteOne = (Model) =>
       data: null,
     });
   });
+ 

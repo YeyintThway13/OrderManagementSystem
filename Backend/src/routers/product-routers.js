@@ -1,7 +1,10 @@
 const express = require("express");
 const productController = require("../controllers/product-controllers");
+const { authenticateRole } = require("../middlewares/auth-role");
 
 const productRouter = express.Router({ mergeParams: true });
+
+productRouter.use(authenticateRole(["Admin"]));
 
 productRouter.get("/", productController.getAllProducts);
 productRouter.get("/:id", productController.getProductById);

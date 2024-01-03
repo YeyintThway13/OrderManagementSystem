@@ -57,8 +57,20 @@ const orderSchema = new mongoose.Schema(
       required: true,
       default: "Processing",
     },
+    order_by: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );
+
+orderSchema.pre("save", async function (next) {
+  if (!this.order_by) {
+    this.order_by = this.createdBy;
+  }
+
+  next();
+});
 
 module.exports = mongoose.model("Order", orderSchema);

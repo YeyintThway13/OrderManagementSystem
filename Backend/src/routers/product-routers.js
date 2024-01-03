@@ -4,10 +4,10 @@ const { authenticateRole } = require("../middlewares/auth-role");
 
 const productRouter = express.Router({ mergeParams: true });
 
-productRouter.use(authenticateRole(["Admin"]));
-
 productRouter.get("/", productController.getAllProducts);
 productRouter.get("/:id", productController.getProductById);
+
+productRouter.use(authenticateRole(["Admin"]));
 productRouter.post("/", productController.createProduct);
 productRouter.put("/:id", productController.updateProduct);
 productRouter.delete("/:id", productController.deleteProduct);

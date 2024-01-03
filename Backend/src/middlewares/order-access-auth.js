@@ -10,7 +10,7 @@ exports.authorizeOrderOperation = async (req, res, next) => {
 
     const order = await Order.findById(id);
 
-    if (order.createdBy !== req.user?._id) {
+    if (order.order_by != req.user?._id) {
       return next(new AppError("Permission denied", 403));
     }
 
@@ -24,7 +24,7 @@ exports.authorizeOrderAccess = async (req, res, next) => {
     req.defaultFilter = {};
     next();
   } else {
-    req.defaultFilter = { createdBy: req.user?._id };
+    req.defaultFilter = { order_by: req.user?._id };
     next();
   }
 };

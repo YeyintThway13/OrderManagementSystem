@@ -99,12 +99,16 @@ exports.getOneById = (Model) =>
 
 exports.createOne = (Model) =>
   asyncHandler(async (req, res, next) => {
+    const newDoc = new Model({
+      ...req.body,
+    });
+
     // 1) Check if user exists in request object
     if (req.user) {
-      req.body.createdBy = req.user._id;
+      newDoc.createdBy = req.user._id;
     }
 
-    const newDoc = await Model.create(req.body);
+    await newDoc.save();
 
     res.status(201).json({
       status: "success",
@@ -120,7 +124,7 @@ exports.updateOne = (Model) =>
     });
 
     if (!updatedDoc)
-      return next(new NotFoundError("No tour found with that ID", 404));
+      return next(new NotFoundError("No doc found with that ID", 404));
 
     res.status(200).json({
       status: "success",
@@ -133,11 +137,10 @@ exports.deleteOne = (Model) =>
     const deletedDoc = await Model.findByIdAndDelete(req.params.id);
 
     if (!deletedDoc)
-      return next(new NotFoundError("No tour found with that ID", 404));
+      return next(new NotFoundError("No doc found with that ID", 404));
 
     res.status(204).json({
       status: "success",
       data: null,
     });
   });
- 

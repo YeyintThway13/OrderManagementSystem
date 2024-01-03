@@ -31,8 +31,20 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    created_by: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "User",
+    },
   },
   { timestamps: true }
 );
+
+productSchema.pre("save", async function (next) {
+  if (!this.created_by) {
+    this.created_by = this.createdBy;
+  }
+
+  next();
+});
 
 module.exports = mongoose.model("Product", productSchema);

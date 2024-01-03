@@ -6,13 +6,16 @@ const inventoryAdjustmentSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    description: {
+      type: String,
+      required: true,
+    },
     date: {
       type: Date,
       required: true,
     },
     vendor: {
       type: String,
-      required: true,
     },
     adjusted_by: {
       type: mongoose.SchemaTypes.ObjectId,
@@ -38,10 +41,6 @@ const inventoryAdjustmentSchema = new mongoose.Schema(
       type: String,
       enum: ["theft", "damaged", "add", "purchase", "return"],
       required: true,
-    },
-    type: {
-      type: String,
-      enum: ["vendor", "warehouse"],
     },
   },
   { timestamps: true }

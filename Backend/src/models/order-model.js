@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const InventoryAdjustment = require("./inventory-adjustment-model");
 
 const orderSchema = new mongoose.Schema(
   {
@@ -66,11 +67,27 @@ const orderSchema = new mongoose.Schema(
 );
 
 orderSchema.pre("save", async function (next) {
-  if (!this.order_by) {
-    this.order_by = this.createdBy;
-  }
+  try {
+    if (!this.order_by) {
+      this.order_by = this.createdBy;
+    }
 
-  next();
+    const newAdjustment = new InventoryAdjustment({
+      ref_code: Date.now(),
+      description: "Order Transcation",
+      date: Date.now(),
+      adjusted_by: this.order_by,
+      adjustment_items: this.products,
+      reason: "purchase",
+    });
+
+    await newAdjustment.save();
+
+    next();
+  } catch (error) {
+    console.log(error);
+    throw new Error("Error in adding inventory adjustment");
+  }
 });
 
 module.exports = mongoose.model("Order", orderSchema);

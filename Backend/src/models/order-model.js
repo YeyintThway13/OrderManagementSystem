@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const InventoryAdjustment = require("./inventory-adjustment-model");
+const Product = require("./product-model");
 
 const orderSchema = new mongoose.Schema(
   {
@@ -68,6 +69,16 @@ const orderSchema = new mongoose.Schema(
 
 orderSchema.pre("save", async function (next) {
   try {
+    for (let i = 0; i < this.products.length; i++) {
+      const item = this.products[i];
+      const product = await Product.findById(item.product_id);
+
+      if (item.quantity > product.stock_quantity) {
+        throw new Error("Stock not enough");
+        return;
+      }
+    }
+
     if (!this.order_by) {
       this.order_by = this.createdBy;
     }
@@ -85,8 +96,7 @@ orderSchema.pre("save", async function (next) {
 
     next();
   } catch (error) {
-    console.log(error);
-    throw new Error("Error in adding inventory adjustment");
+    throw new Error(error);
   }
 });
 

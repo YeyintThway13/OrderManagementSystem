@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user-model");
 const asyncHandler = require("../utils/async-handler");
 const { NotFoundError, AppError } = require("../utils/errors");
+const { getAll, getOneById } = require("./base-controllers");
 
 exports.registerUser = asyncHandler(async (req, res, next) => {
   const { username, email, password } = req.body;
@@ -133,3 +134,84 @@ exports.createAccount = asyncHandler(async (req, res, next) => {
 
   res.status(200).json({ data: newUser });
 });
+
+exports.updateProfile = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+
+  const user = await User.findByIdAndUpdate(id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({ data: user });
+});
+
+exports.deleteProfile = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+
+  await User.findByIdAndDelete(id);
+
+  res.sendStatus(200);
+});
+
+exports.getProfile = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+
+  const user = await User.findById(id);
+
+  if (!user) {
+    return next(new NotFoundError("No document found with that ID"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: user,
+  });
+});
+
+exports.updateMyPassword = asyncHandler(async (req, res, next) => {
+  const id = req.user._id;
+  const { oldPassword, newPassword } = req.body;
+
+  const user = await User.findById(id);
+
+  // Check if password is correct
+  const validPassword = await bcrypt.compare(oldPassword, user.password);
+  if (!validPassword) {
+    return next(new AppError("Invalid Password", 401));
+  }
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  const newUser = await User.findByIdAndUpdate(
+    id,
+    { password: hashedPassword },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({ data: newUser });
+});
+
+exports.updatePassword = asyncHandler(async (req, res, next) => {
+  const id = req.params.id;
+  const { newPassword } = req.body;
+
+  const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+  const newUser = await User.findByIdAndUpdate(
+    id,
+    { password: hashedPassword },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).json({ data: newUser });
+});
+
+exports.getAllUsers = getAll(User, ["username", "email"]);
+exports.getUserById = getOneById(User);

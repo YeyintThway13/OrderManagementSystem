@@ -10,8 +10,6 @@ require("dotenv").config();
 const client = new Redis(process.env.REDIS_PORT, process.env.REDIS_HOST);
 const getAsync = util.promisify(client.get).bind(client);
 
-console.log(process.env.REDIS_HOST, process.env.REDIS_PORT);
-
 exports.getAll =
   (Model, searchOption = []) =>
   async (req, res) => {

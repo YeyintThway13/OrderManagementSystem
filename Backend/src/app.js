@@ -1,6 +1,7 @@
 const express = require("express");
-const errorHandler = require("./middlewares/error-handling");
+const compression = require("compression");
 
+const errorHandler = require("./middlewares/error-handling");
 const { routes } = require("./routes");
 const { AppError } = require("./utils/errors");
 
@@ -8,6 +9,21 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  compression({
+    level: 6,
+    threshold: 50 * 1000,
+    filter: shouldCompress,
+  })
+);
+
+function shouldCompress(req, res) {
+  if (req.headers["x-no-compression"]) {
+    return false;
+  }
+  return compression.filter(req, res);
+}
 
 routes(app);
 

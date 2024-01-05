@@ -1,6 +1,16 @@
 const APIFeatures = require("../utils/api-features");
 const asyncHandler = require("../utils/async-handler");
 const { NotFoundError } = require("../utils/errors");
+const Redis = require("ioredis");
+
+const util = require("util");
+require("dotenv").config();
+
+// Create a Redis client
+const client = new Redis(process.env.REDIS_PORT, process.env.REDIS_HOST);
+const getAsync = util.promisify(client.get).bind(client);
+
+console.log(process.env.REDIS_HOST, process.env.REDIS_PORT);
 
 exports.getAll =
   (Model, searchOption = []) =>
@@ -10,6 +20,22 @@ exports.getAll =
         req.query;
 
       const defaultFilter = req?.defaultFilter || {};
+
+      const resouce = req.originalUrl;
+
+      const cacheKey = `all:${resouce}:${JSON.stringify(
+        req.query
+      )}:${JSON.stringify(defaultFilter)}:${
+        req.user?.role === "Customer" ? req.user?._id : req.user?.role
+      }`;
+
+      const cachedData = await getAsync(cacheKey);
+
+      if (cachedData) {
+        const parsedData = JSON.parse(cachedData);
+        console.log("From Cache Data Response");
+        return res.json(parsedData);
+      }
 
       const parsedParamFilter = paramFilter ? JSON.parse(paramFilter) : {};
 
@@ -67,6 +93,22 @@ exports.getAll =
 
       const totalPages = Math.ceil(totalCount / limitPerPage) || 1;
 
+      await client.set(
+        cacheKey,
+        JSON.stringify({
+          data,
+          pagination: {
+            currentPage,
+            totalPages,
+            totalCount,
+          },
+        }),
+        "EX",
+        10
+      );
+
+      console.log("From Normal Response");
+
       res.json({
         data,
         pagination: {
@@ -83,6 +125,22 @@ exports.getAll =
 
 exports.getOneById = (Model) =>
   asyncHandler(async (req, res, next) => {
+    const resouce = req.originalUrl;
+
+    const cacheKey = `getDetails:${resouce}:${JSON.stringify(req.query)}:${
+      req.user?.role === "Customer" ? req.user?._id : req.user?.role
+    }`;
+    const cachedData = await getAsync(cacheKey);
+
+    if (cachedData) {
+      const parsedData = JSON.parse(cachedData);
+      console.log("From Cache Data Response");
+      return res.status(200).json({
+        status: "success",
+        data: parsedData,
+      });
+    }
+
     const features = new APIFeatures(Model.findById(req.params.id), req.query)
       .select()
       .populate();
@@ -90,6 +148,8 @@ exports.getOneById = (Model) =>
     const doc = await features.query;
 
     if (!doc) return next(new NotFoundError("No document found with that ID"));
+
+    await client.set(cacheKey, JSON.stringify({ doc }), "EX", 10);
 
     res.status(200).json({
       status: "success",

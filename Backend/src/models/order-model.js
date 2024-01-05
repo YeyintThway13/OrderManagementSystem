@@ -67,6 +67,8 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+orderSchema.index({ order_code: 1 });
+
 orderSchema.pre("save", async function (next) {
   try {
     for (let i = 0; i < this.products.length; i++) {

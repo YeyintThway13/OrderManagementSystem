@@ -31,7 +31,6 @@ exports.getAll =
 
       if (cachedData) {
         const parsedData = JSON.parse(cachedData);
-        console.log("From Cache Data Response");
         return res.json(parsedData);
       }
 
@@ -104,8 +103,6 @@ exports.getAll =
         "EX",
         10
       );
-
-      console.log("From Normal Response");
 
       res.json({
         data,

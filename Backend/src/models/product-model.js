@@ -39,6 +39,8 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+productSchema.index({ item_code: 1, name: "text", description: "text" });
+
 productSchema.pre("save", async function (next) {
   if (!this.created_by) {
     this.created_by = this.createdBy;

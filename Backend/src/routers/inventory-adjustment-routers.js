@@ -1,6 +1,10 @@
 const express = require("express");
 const inventoryAdjustmentControllers = require("../controllers/inventory-adjustment-controllers");
 const { authenticateRole } = require("../middlewares/auth-role");
+const { validate } = require("../middlewares/validate");
+const {
+  inventoryAdjustmentCreateValidationRules, inventoryAdjustmentUpdateValidationRules,
+} = require("../Schemas/inventory-adjustment-schema");
 
 const inventoryAdjustmentRouter = express.Router({ mergeParams: true });
 
@@ -16,10 +20,30 @@ inventoryAdjustmentRouter.get(
 );
 inventoryAdjustmentRouter.post(
   "/",
+  inventoryAdjustmentCreateValidationRules(),
+  validate([
+    "ref_code",
+    "description",
+    "date",
+    "vendor",
+    "adjusted_by",
+    "adjustment_items",
+    "reason",
+  ]),
   inventoryAdjustmentControllers.createInventoryAdjustment
 );
 inventoryAdjustmentRouter.put(
   "/:id",
+  inventoryAdjustmentUpdateValidationRules(),
+  validate([
+    "ref_code",
+    "description",
+    "date",
+    "vendor",
+    "adjusted_by",
+    "adjustment_items",
+    "reason",
+  ]),
   inventoryAdjustmentControllers.updateInventoryAdjustment
 );
 inventoryAdjustmentRouter.delete(

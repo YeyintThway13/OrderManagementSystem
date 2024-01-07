@@ -29,6 +29,7 @@ const productSchema = new mongoose.Schema(
     },
     returnable: {
       type: Boolean,
+      required: true,
       default: false,
     },
     created_by: {

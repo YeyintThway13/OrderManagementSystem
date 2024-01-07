@@ -1,14 +1,26 @@
 const express = require("express");
 const compression = require("compression");
+const helmet = require("helmet");
+const { rateLimit } = require("express-rate-limit");
 
 const errorHandler = require("./middlewares/error-handling");
 const { routes } = require("./routes");
 const { AppError } = require("./utils/errors");
 
-const app = express();
+const app = express({ limit: "3mb" });
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  limit: 100,
+  standardHeaders: "draft-7",
+  legacyHeaders: false,
+});
+
+app.use(limiter);
 
 app.use(
   compression({

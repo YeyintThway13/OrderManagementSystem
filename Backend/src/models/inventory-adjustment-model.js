@@ -55,14 +55,19 @@ inventoryAdjustmentSchema.pre("save", async function (next) {
     const item = this.adjustment_items[i];
     const product = await Product.findById(item.product_id);
 
-    if (item.quantity > product.stock_quantity) {
-      throw new Error("Stock not enough");
-      return;
+    if (this.reason == "add" || this.reason == "return") {
+      await Product.findByIdAndUpdate(product._id, {
+        stock_quantity: product.stock_quantity + item.quantity,
+      });
+    } else {
+      if (item.quantity > product.stock_quantity) {
+        throw new Error("Stock not enough");
+        return;
+      }
+      await Product.findByIdAndUpdate(product._id, {
+        stock_quantity: product.stock_quantity - item.quantity,
+      });
     }
-
-    await Product.findByIdAndUpdate(product._id, {
-      stock_quantity: product.stock_quantity - item.quantity,
-    });
   }
 
   next();

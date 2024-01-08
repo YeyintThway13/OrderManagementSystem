@@ -55,7 +55,7 @@ inventoryAdjustmentSchema.pre("save", async function (next) {
     const item = this.adjustment_items[i];
     const product = await Product.findById(item.product_id);
 
-    if (this.reason == "add" || this.reason == "return") {
+    if (this?.reason == "add" || this?.reason == "return") {
       await Product.findByIdAndUpdate(product._id, {
         stock_quantity: product.stock_quantity + item.quantity,
       });

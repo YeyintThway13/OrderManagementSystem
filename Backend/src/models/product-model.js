@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const { getIO } = require("../utils/create-io");
+
 const productSchema = new mongoose.Schema(
   {
     item_code: {
@@ -48,6 +50,15 @@ productSchema.pre("save", async function (next) {
   }
 
   next();
+});
+
+productSchema.pre("findOneAndUpdate", async function (next) {
+  const io = getIO();
+  const productId = this?._conditions?._id;
+  if (this._update?.stock_quantity) {
+    const updatedQuantity = this._update?.stock_quantity;
+    io.emit("productQuantityUpdate", { productId, updatedQuantity });
+  }
 });
 
 module.exports = mongoose.model("Product", productSchema);

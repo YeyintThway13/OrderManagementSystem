@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { getIO } = require("../utils/create-io");
 const InventoryAdjustment = require("./inventory-adjustment-model");
 const Product = require("./product-model");
 
@@ -99,6 +100,23 @@ orderSchema.pre("save", async function (next) {
     next();
   } catch (error) {
     throw new Error(error);
+  }
+});
+
+orderSchema.pre("findOneAndUpdate", async function (next) {
+  const io = getIO();
+  const orderId = this?._conditions?._id;
+
+  const order = await this.model.findById(orderId);
+
+  if (this._update?.status) {
+    const updatedStatus = this._update?.status;
+
+    io.to(order.order_by.toString()).emit("orderStatusUpdate", {
+      orderId,
+      updatedStatus,
+    });
+    io.to("Stuff").emit("orderStatusUpdate", { orderId, updatedStatus });
   }
 });
 

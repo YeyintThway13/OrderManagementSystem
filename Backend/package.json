@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --no-warnings src/index"
+    "dev": "nodemon --no-warnings src/index",
+    "start": "node --no-warnings src/index"
   },
   "keywords": [],
   "author": "",

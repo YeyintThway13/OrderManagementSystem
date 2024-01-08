@@ -17,7 +17,7 @@ const userRouter = express.Router({ mergeParams: true });
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 10,
+  limit: 20,
   standardHeaders: "draft-7",
   legacyHeaders: false,
 });

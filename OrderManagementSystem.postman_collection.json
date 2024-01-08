@@ -12,10 +12,20 @@
 				{
 					"name": "Get All Products",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDQzODM2NSwiZXhwIjoxNzA0NDM4OTY1fQ.VRxPtaxY71fNWCaiDhvF_bs7oDNJF1YQy9CJDQ-PhXQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/products?search=001",
+							"raw": "http://localhost:3000/api/v1/products",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -25,12 +35,6 @@
 								"api",
 								"v1",
 								"products"
-							],
-							"query": [
-								{
-									"key": "search",
-									"value": "001"
-								}
 							]
 						}
 					},
@@ -39,11 +43,21 @@
 				{
 					"name": "Create Product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDUzMjIyNywiZXhwIjoxNzA0NTMyODI3fQ.WeGckecWWd9QxSchHnUTKfNzSPy02hSQ3FuTIAbD2q0",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"item_code\":\"S0-001\",\n  \"name\":\"MacBook\",\n  \"description\":\"This is mackbook for sale\",\n  \"sale_price\":1000,\n  \"stock_quantity\":30,\n  \"unit\":\"item\",\n  \"stock_thresh_hold_value\":5,\n  \"returnable\":\"true\"\n}",
+							"raw": "{\n  \"item_code\":\"S0-001\",\n  \"name\":\"<p>Testing</p>\",\n  \"description\":\"This is mackbook for sale\",\n  \"sale_price\":1000,\n  \"stock_quantity\":30,\n  \"unit\":\"item\",\n  \"stock_thresh_hold_value\":5,\n  \"returnable\":\"true\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +86,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/products/659379d7abfd84e31e7e6749",
+							"raw": "http://localhost:3000/api/v1/products/65950d8783ce5157f75eaace",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -82,7 +96,7 @@
 								"api",
 								"v1",
 								"products",
-								"659379d7abfd84e31e7e6749"
+								"65950d8783ce5157f75eaace"
 							]
 						}
 					},
@@ -91,11 +105,21 @@
 				{
 					"name": "Update Product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDYzMDkxMiwiZXhwIjoxNzA0NjMxNTEyfQ.kXobnWQ-cytu8kTlPJLiqbZXN0gonolzqxN3wRPLQ8g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Macbook Air 2023\"\n}",
+							"raw": "{\n    \"stock_quantity\":50\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -103,7 +127,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/products/659379d7abfd84e31e7e6749",
+							"raw": "http://localhost:3000/api/v1/products/659a8a1b7cd81f52e950ab23",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -113,7 +137,7 @@
 								"api",
 								"v1",
 								"products",
-								"659379d7abfd84e31e7e6749"
+								"659a8a1b7cd81f52e950ab23"
 							]
 						}
 					},
@@ -122,10 +146,20 @@
 				{
 					"name": "Delete Product",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI2NzEyNCwiZXhwIjoxNzA0MjY3NzI0fQ.or2wZxfjHv52oFyzr7WJHPR4MfJfaDN8Je_0RMrkYCE",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/products/659379d7abfd84e31e7e6749",
+							"raw": "http://localhost:3000/api/v1/products/65950d8783ce5157f75eaace",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -135,7 +169,7 @@
 								"api",
 								"v1",
 								"products",
-								"659379d7abfd84e31e7e6749"
+								"65950d8783ce5157f75eaace"
 							]
 						}
 					},
@@ -149,6 +183,16 @@
 				{
 					"name": "Get All Orders",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vZW5vZUBnbWFpbC5jb20iLCJfaWQiOiI2NTk1MTcyNzIyZDVmYWIxMzRkYjVmODgiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3MDQ0NDE3ODQsImV4cCI6MTcwNDQ0MjM4NH0.FjJCmkjGErC0UnLv34CsnSvAntdgRSIoRJDeqYJ7wlQ",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -170,11 +214,21 @@
 				{
 					"name": "Create order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDUzNDkwMiwiZXhwIjoxNzA0NTM1NTAyfQ.NsMYrAt08gqoQzdLLFmFpHWA1jP_BgxkJ37dNYSMiEM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"products\" : [\n        {\n            \"product_id\" : \"65937a48abfd84e31e7e6752\",\n            \"quantity\" : 300,\n            \"unit\":\"item\"\n        }\n    ],\n    \"order_code\":\"T0-111\",\n    \"expected_shipment_date\":\"2024-12-09\",\n    \"delivery_method\":\"Bicycle\",\n    \"payment_method\":\"Paypal\",\n    \"customer_note\":\"Gray Black\"\n}",
+							"raw": "{\n    \"products\" : [\n        {\n            \"product_id\" : \"65950fe8f288ca124b8d2824\",\n            \"quantity\" : 10,\n            \"unit\":\"item\"\n        }\n    ],\n    \"order_code\":\"Noe-111\",\n    \"expected_shipment_date\":\"2024-12-09\",\n    \"delivery_method\":\"Bicycle\",\n    \"payment_method\":\"Paypal\",\n    \"customer_note\":\"Gray Black\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -200,10 +254,20 @@
 				{
 					"name": "Get Order by id",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDQ0MjIyNSwiZXhwIjoxNzA0NDQyODI1fQ.Lew7vaSn-sD4pRiyfjBAyu_Xj8cCvOCz79ovhUUDvDk",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders/659396ce22467d1d9213f5f7",
+							"raw": "http://localhost:3000/api/v1/orders/6595221ae7a37aba54bd6fe8",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -213,7 +277,7 @@
 								"api",
 								"v1",
 								"orders",
-								"659396ce22467d1d9213f5f7"
+								"6595221ae7a37aba54bd6fe8"
 							]
 						}
 					},
@@ -222,11 +286,21 @@
 				{
 					"name": "Update Order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDUzNDkwMiwiZXhwIjoxNzA0NTM1NTAyfQ.NsMYrAt08gqoQzdLLFmFpHWA1jP_BgxkJ37dNYSMiEM",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"status\" : \"Cancelled\"\n}",
+							"raw": "{\n    \"status\" : \"Delivered\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -234,7 +308,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders/659396ce22467d1d9213f5f7",
+							"raw": "http://localhost:3000/api/v1/orders/6599245b6d251ebf38864104",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -244,7 +318,7 @@
 								"api",
 								"v1",
 								"orders",
-								"659396ce22467d1d9213f5f7"
+								"6599245b6d251ebf38864104"
 							]
 						}
 					},
@@ -253,10 +327,20 @@
 				{
 					"name": "Delete Order",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI3MDM2NiwiZXhwIjoxNzA0MjcwOTY2fQ.dWbcUVy15joG0BWNySjLfOn4rl1Yk6XFfvToVY72Ers",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/v1/orders/659396ce22467d1d9213f5f7",
+							"raw": "http://localhost:3000/api/v1/orders/6595196822d5fab134db5fa6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -266,7 +350,7 @@
 								"api",
 								"v1",
 								"orders",
-								"659396ce22467d1d9213f5f7"
+								"6595196822d5fab134db5fa6"
 							]
 						}
 					},
@@ -280,6 +364,16 @@
 				{
 					"name": "Get All Inventory Adjustment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDQ0MTEyMCwiZXhwIjoxNzA0NDQxNzIwfQ.Mvl0IipVwxxcFzKoVXNzmMgl46RCAS01neH-xcm0hB4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -301,11 +395,21 @@
 				{
 					"name": "Create Inventory Adjustment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDYzNzA0MiwiZXhwIjoxNzA0NjM3NjQyfQ.5_V8a308qIW_bcmP9vT9hR6wvF5vzZcL2W-41u__F9o",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"adjustmentItems\" : [\n        {\n            \"product_id\" : \"65937a48abfd84e31e7e6752\",\n            \"quantity\" : 300,\n            \"unit\":\"item\"\n        }\n    ],\n    \"ref_code\":\"F0-111\",\n    \"date\":\"2024-12-09\",\n    \"vendor\":\"Bicycle\",\n    \"reason\":\"return\",\n    \"type\":\"warehouse\"\n}",
+							"raw": "{\n    \"adjustment_items\" : [\n        {\n            \"product_id\" : \"659a8a1b7cd81f52e950ab23\",\n            \"quantity\" : 20,\n            \"unit\":\"item\"\n        }\n    ],\n    \"ref_code\":\"F0-111\",\n    \"date\":\"2024-12-09\",\n    \"vendor\":\"Bicycle\",\n    \"reason\":\"purchase\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -353,6 +457,16 @@
 				{
 					"name": "Update Inventory Adjustment",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDYyOTg4MSwiZXhwIjoxNzA0NjMwNDgxfQ.EmWWX5FdW0WBU-H6EHbl6o3GT3IHK75nw1ImNq0QW14",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
@@ -365,7 +479,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/v1/inventory-adjustments/6593b30bcccbc1e3b3609bef",
+							"raw": "http://localhost:3000/api/v1/inventory-adjustments/659a8a4fcbdc7277076c975c",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -375,7 +489,7 @@
 								"api",
 								"v1",
 								"inventory-adjustments",
-								"6593b30bcccbc1e3b3609bef"
+								"659a8a4fcbdc7277076c975c"
 							]
 						}
 					},
@@ -398,6 +512,396 @@
 								"v1",
 								"inventory-adjustments",
 								"6593b30bcccbc1e3b3609bef"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"Yeyint Thway\",\n    \"email\" : \"yeyintthway@gmail.com\",\n    \"password\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"yeyintthway@gmail.com\",\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create user by admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTUwYzgxODUwNWIwMjE4OTI4YjVkOCIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI2OTUwNCwiZXhwIjoxNzA0MjcwMTA0fQ.aqU1jyQzm1-cVP1Wy4I95DtpM8iqAN0Z4WHl45ECwlM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"Noe Noe\",\n    \"email\" : \"noenoe@gmail.com\",\n    \"password\" : \"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vZW5vZUBnbWFpbC5jb20iLCJfaWQiOiI2NTk0MjFjNDgwZTQ0ZTllNTdmZTcxNzIiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3MDQyMTczMjMsImV4cCI6MTcwNDIxNzkyM30.TLCJYhQX1XMqbZk0T_Q4ZeUZ3EhYFO82KYKrLR5njrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"Updated name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/update-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vZW5vZUBnbWFpbC5jb20iLCJfaWQiOiI2NTk0MjFjNDgwZTQ0ZTllNTdmZTcxNzIiLCJyb2xlIjoiQ3VzdG9tZXIiLCJpYXQiOjE3MDQyMTczMjMsImV4cCI6MTcwNDIxNzkyM30.TLCJYhQX1XMqbZk0T_Q4ZeUZ3EhYFO82KYKrLR5njrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"Updated name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/delete-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"delete-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTNlOWJjZWIxYjU1Yjc0NTdkZWRhMyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI1MjU1OSwiZXhwIjoxNzA0MjUzMTU5fQ.r7sqnb5_JBHE38F6Xd2OLSM7G90cyu5cJsiwbo0VS9g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/get-profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"get-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All User by Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTNlOWJjZWIxYjU1Yjc0NTdkZWRhMyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI1MjcyMywiZXhwIjoxNzA0MjUzMzIzfQ.BO1jq0dLkgUpkfpIrW_tjLkCLSmWmZV0V_suxR4llMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTNlOWJjZWIxYjU1Yjc0NTdkZWRhMyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI1MjcyMywiZXhwIjoxNzA0MjUzMzIzfQ.BO1jq0dLkgUpkfpIrW_tjLkCLSmWmZV0V_suxR4llMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/6539a0209743c9910c05e4fe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"6539a0209743c9910c05e4fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update my password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTNlOWJjZWIxYjU1Yjc0NTdkZWRhMyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI1MzkwOCwiZXhwIjoxNzA0MjU0NTA4fQ.pXs2wQPUIYfTjiQM4ltz83S0rPTbLthRA94ZFUOjH_o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\" : \"1234567890\",\n    \"newPassword\" : \"heehee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/update-my-password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update-my-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InlleWludHRod2F5QGdtYWlsLmNvbSIsIl9pZCI6IjY1OTNlOWJjZWIxYjU1Yjc0NTdkZWRhMyIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTcwNDI1Mzk5NiwiZXhwIjoxNzA0MjU0NTk2fQ.29anyp9oUMkCT8yHbRE0cOpLLOl_-ON-9dQTMryW1t4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"newPassword\" : \"heehee\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/users/update-password/6594da12baebc1c8b76659a3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"users",
+								"update-password",
+								"6594da12baebc1c8b76659a3"
 							]
 						}
 					},

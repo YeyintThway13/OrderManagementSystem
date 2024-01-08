@@ -103,3 +103,9 @@
   - Can do CRUD operations for inventory adjustments
   - Can do CRUD operations for orders
   - Can do CRUD operations for products
+
+### Notes
+
+<aside>
+💡 You can perform search, filter, sort, pagination, select, populate actions in getAll routes. All those logics are in base-controller.js file.
+</aside>

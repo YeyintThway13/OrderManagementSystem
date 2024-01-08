@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --no-warnings src/index",
-    "start": "node --no-warnings src/index"
+    "start": "node --no-warnings src/index",
+    "create-admin-account": "node --no-warnings src/utils/create-admin-account.js"
   },
   "keywords": [],
   "author": "",

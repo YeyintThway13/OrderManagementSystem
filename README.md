@@ -44,7 +44,8 @@
   2. Go to the backend directory
   3. Install node modules
   4. Start the mongodb and Redis
-  5. Create a new .env files and add the following fields
+  5. Create default admin account (yarn create-admin-account)
+  6. Create a new .env files and add the following fields
 
      ```
      MONGO_URI = mongodb://localhost:27017/order-management-system
@@ -54,7 +55,7 @@
      REDIS_PORT = 6379
      ```
 
-  6. Run the server (yarn start)
+  7. Run the server (yarn start)
 
 ### Performance Control
 

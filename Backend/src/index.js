@@ -2,7 +2,6 @@ const cluster = require("cluster");
 const os = require("os");
 const http = require("http");
 
-
 const { app } = require("./app");
 const connectDb = require("./utils/database-connect");
 const { createIO } = require("./utils/create-io");

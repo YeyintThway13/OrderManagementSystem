@@ -7,7 +7,13 @@ const util = require("util");
 require("dotenv").config();
 
 // Create a Redis client
-const client = new Redis(process.env.REDIS_PORT, process.env.REDIS_HOST);
+new Redis({
+  port: process.env.REDIS_PORT,
+  host: process.env.REDIS_HOST,
+  username: "default",
+  password: process.env.REDIS_PASSWORD,
+});
+const client = new Redis();
 const getAsync = util.promisify(client.get).bind(client);
 
 exports.getAll =

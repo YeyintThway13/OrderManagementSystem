@@ -53,6 +53,7 @@
      REFRESH_TOKEN_SECRET_KEY = testingrefreshtoken
      REDIS_HOST = 127.0.0.1
      REDIS_PORT = 6379
+     REDIS_PASSWORD = my-pw
      ```
 
   7. Run the server (yarn start)

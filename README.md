@@ -43,7 +43,7 @@
   1. Clone the repo
   2. Go to the backend directory
   3. Install node modules
-  4. Start the mongodb and Redis
+  4. Start the mongodb and Redis (You can use online server)
   5. Create default admin account (yarn create-admin-account)
   6. Create a new .env files and add the following fields
 
@@ -51,8 +51,9 @@
      MONGO_URI = mongodb://localhost:27017/order-management-system
      ACCESS_TOKEN_SECRET_KEY = testingaccesstoken
      REFRESH_TOKEN_SECRET_KEY = testingrefreshtoken
-     REDIS_HOST = 127.0.0.1
-     REDIS_PORT = 6379
+     REDIS_HOST = your_host_url
+     REDIS_PASSWORD = your_redis_password
+     REDIS_PORT = your_redis_port
      REDIS_PASSWORD = mypassword
      ```
 

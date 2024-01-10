@@ -5,7 +5,7 @@ const http = require("http");
 const { app } = require("./app");
 const connectDb = require("./utils/database-connect");
 const { createIO } = require("./utils/create-io");
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 const cpuCount = os.cpus().length;
 
